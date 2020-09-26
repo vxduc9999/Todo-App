@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <title> Update Task </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <form action="/updateTask" method="POST">
+            <input type="text" name="updateTask" placeholder="add new task" id="todoUp" value="<%= todo.task %>">
+            <button> Update Task </button>
+            <input type="hidden" name="todoId" value="<%= todo.id %>">
+        </form>
+
+    </div>
+</body>
+
+</html>

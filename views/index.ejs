@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title> ToDo App </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2> A Simple ToDo List App </h2>
+        <form action="/addtask" method="POST">
+            <input type="text" name="newtask" placeholder="add new task"> <button> Add Task </button>
+        </form>
+        <h2> Added Task </h2>
+        <%  if(tasks.length > 0){ %>
+        <% for(let i = 0; i < tasks.length; i++) { %>
+        <article>
+            <% if(tasks[i].flag == false) { %>
+            <div><%= tasks[i].id %></div>
+            <div><%= tasks[i].task %></div>
+            <form action="/CompleteTask" method="POST">
+                <input type="hidden" name="TaskIdCom" value="<%= tasks[i].id %>">
+                <button type="submit"> Done!</button>
+            </form>
+            <a href="/UpdateTask/<%= tasks[i].id %>?edit=true">Update</a>
+            <form action="/DelTask" method="POST">
+                <input type="hidden" name="TaskId" value="<%= tasks[i].id %>">
+                <button type="submit"> Remove!</button>
+            </form>
+            <% } %>
+
+        </article>
+        <% } %>
+        <% } else { %>
+        <h1>No Todo</h1>
+        <% } %>
+
+
+        <h2> Completed task </h2>
+        <%  if(tasks.length > 0){ %>
+        <% for(let i = 0; i < tasks.length; i++) { %>
+        <article>
+            <% if(tasks[i].flag == true) { %>
+            <div><%= tasks[i].id %></div>
+            <div><%= tasks[i].task %></div>
+            <form action="/DelTask" method="POST">
+                <input type="hidden" name="TaskId" value="<%= tasks[i].id %>">
+                <button type="submit"> Remove!</button>
+            </form>
+            <% } %>
+
+        </article>
+        <% } %>
+        <% } else { %>
+        <h1></h1>
+        <% } %>
+    </div>
+</body>
+
+</html>
